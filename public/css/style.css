@@ -1,0 +1,23 @@
+header {
+  text-align: center;
+}
+
+nav ul {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  list-style: none;
+  float: left;
+  margin: 0 10px;
+}
+
+nav ul li {
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+}
