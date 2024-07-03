@@ -16,7 +16,7 @@ class LevelController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:levels,name',
-            // tambahkan validasi lain sesuai kebutuhan
+            // Add other validations as needed
         ]);
 
         Level::create($request->all());
