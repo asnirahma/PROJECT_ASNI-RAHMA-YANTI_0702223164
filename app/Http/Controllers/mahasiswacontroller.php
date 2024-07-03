@@ -2,33 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\prodi;
 use Illuminate\Http\Request;
 
-class mahasiswacontroller extends Controller
+class prodiController extends Controller
 {
     function index()
-    {   
-        $mhs = mahasiswaModel ::ordeBy('nim','asc')->get();
-        return  view('mahasiswa'compact('mhs'));
+    {
+        $data = prodi::orderBy('no', 'desc')->paginate();
+        return view('prodi')->with('data', $data);
     }
 
     function create()
     {
-        return view('create_mahasiswa');
+        return view('create_prodi');
     }
+
     function store(Request $request)
     {
+
         $data = [
-            'nim' => $request->nim,
-            'nama_mahasiswa' => $request->nama_mahasiswa,
-            'alamat' => $request->alamat,
-            'tgl_lahir' => $request->tgl_lahir,
-            'jk' => $request->jk,
+            'no' => $request->no,
+            'id_prodi' => $request->id_prodi,
+            'nama_prodi' => $request->nama_prodi,
+            'himpunan_mahasiswa' => $request->himpunan_mahasiswa,
         ];
-        mahasiswaModel::create($data);
-        if ($simpan) {
-            echo "Berhasil";
-            return redirect()->to('/mahasiswa');
-        }
+        prodi::create($data);
+        return REDIRECT()->to('prodi')->with('success', 'Berhasil menambahkan data');
     }
 }

@@ -1,42 +1,28 @@
 <?php
 
-use App\Http\Controllers\prodicontroller;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\LevelController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
-  //INI ADALAH CONTOH ROUTE
-  //return view('welcome');
-  $mahasiswa = " Asni ";
+  $mahasiswa = "Asni";
   $umur = 20;
-  //return "HALO UINSU, nama saya" . $mahasiswa . ", Umur saya " . $umur . " tahun ";
   return view('index')->with('m', $mahasiswa);
 });
 
-Route::get('home', function () {
-  //return "Ini adalah halaman HOME";
-  return view('home');
+Route::get('/', function () {
+  return view('index');
 });
 
-Route::get('prodi', function () {
-  //return "Ini adalah prodi";
-  return view('prodi');
-});
-
-Route::get('/debug-env', function () {
-  return response()->json(config('database.connections'));
-});
-
-Route::resource('prodi', prodiController::class,);
-Route::get('prodi/create', [prodiController::class, 'create']);
-Route::post('/prodi', [prodicontroller::class, 'store']);
+Route::get('/rooms', [RoomController::class, 'index']);
+Route::get('/rooms/{room}', [RoomController::class, 'show']);
+Route::get('/rooms/{room}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
+Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update');
+Route::get('/rooms/create', [RoomController::class, 'create'])->name('rooms.create');
+Route::post('/rooms', [RoomController::class, 'store'])->name('rooms.store');
+Route::get('/levels/create', [LevelController::class, 'create'])->name('levels.create');
+Route::post('/levels', [LevelController::class, 'store'])->name('levels.store');
+Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
+Route::get('/rooms/{id}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
+Route::put('/rooms/{id}', [RoomController::class, 'update'])->name('rooms.update');

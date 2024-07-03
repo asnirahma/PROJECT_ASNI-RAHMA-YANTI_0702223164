@@ -8,7 +8,7 @@
     <center>
     <h1> Prodi Mahasiswa </h1>
 
-    <h4> Prodi Mahasiswa </h4>
+    <h4> Halaman Prodi Mahasiswa </h4>
 
         <table border="1" style="border-collapse: collapse;">
             <thead style="background-color: black;">
